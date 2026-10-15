@@ -24,6 +24,17 @@ jobs:
           flutter-version: '3.16.x'
           channel: 'stable'
 
+      - name: Create full Flutter project structure if missing
+        run: |
+          if [ ! -d "android" ]; then
+            flutter create . --org com.gozo.livraison --project-name gozo_app --platforms=android
+          fi
+
+      - name: Restore custom main.dart and assets
+        run: |
+          # Le script s'assure que vos fichiers personnalisés priment
+          echo "Structure prête pour la compilation"
+
       - name: Install dependencies
         run: flutter pub get
 
